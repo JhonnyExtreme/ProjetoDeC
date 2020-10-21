@@ -55,8 +55,25 @@ int menu(){
  return 0;
 }
 
+
+
+
+
+int registro(){
+
+  //Recebe um valor 
+  puts("Caso o Valor for Positivo Entra Como Receita");
+  puts("Se o Valor for Negativo Entrara Como Gasto");
+  // por uma descrição
+  // por a data do registro
+  // indicar qual categoria.
+
+}
+
 int main(void){
   menu();
   return 0;
  }
+
+
 
