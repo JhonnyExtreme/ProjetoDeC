@@ -60,13 +60,66 @@ int menu(){
 
 
 int registro(){
-
+  double valor;
+  char descricao[150];
+  char data[11];
+  char categoria[20];
   //Recebe um valor 
+  
+  puts("----------------------------------------------");
   puts("Caso o Valor for Positivo Entra Como Receita");
+  puts("----------------------------------------------");
   puts("Se o Valor for Negativo Entrara Como Gasto");
+  puts("----------------------------------------------");
+  scanf("%lf\n",&valor);
+  puts("Descrição");
+  puts("----------------------------------------------");
+  scanf("%s\n", descricao);
+  puts("Data(dd/mm/aaaa)");
+  puts("----------------------------------------------");
+  scanf("%s\n", data);
+FILE* fp = fopen ("Registros.txt", "r");  
+
+puts("----------------------------------------------");
+puts("");
+puts("");
+puts("");
+
+printf("As categorias EXISTENTES são:");
+
+char cat[25];
+char aux1[25];
+char aux2[25];
+char aux3[25];
+
+int i;
+int z = fscanf (fp, "%s %s %s %s", aux1,aux2,aux3,cat);
+for (i=0; z != EOF;i++) {
+    printf(" %s ",cat);
+    z = fscanf (fp, "%s %s %s %s", aux1,aux2,aux3,cat);
+}
+
+fclose(fp);
+
+FILE* f = fopen ("Registros.txt", "a+");
+  puts("");
+  puts("");
+  puts("----------------------------------------------");
+  puts("");
+  puts("Categoria");
+  puts("");
+  puts("----------------------------------------------");
+  scanf("%s", categoria);
+
+  fprintf(f,"%.2lf %s %s %s\n",valor,data,categoria,descricao);
+
+  fclose (f);
   // por uma descrição
   // por a data do registro
   // indicar qual categoria.
+  // teste
+
+  return 0.0;
 
 }
 
