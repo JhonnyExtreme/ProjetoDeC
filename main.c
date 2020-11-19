@@ -3,62 +3,6 @@
 #include <string.h>
 #include <math.h>
 
-
-int menu(){
-  int option = -42;
-  while(option != 0){
-    do{
-      puts("Opção 0 - Sair");
-      puts("Opção 1 - Registros");
-      puts("Opção 2 - Categorizar");
-      puts("Opção 3 - Relatórios Mensal");
-      puts("Opção 4 - Relatórios Anual");
-      puts("Opção 5 (Plus) - Pensar");
-      puts("Opção 6 (Plus)- Pensar");
-      puts("Opção 7 (Plus) - Pensar ");
-      scanf("%d",&option);
-    } while(option < 0 || option > 7);{
-      if (option == 0){
-         puts("Obrigado Por Utilizar o Gerenciador, Até Logo...");
-
-      }
-      if (option == 1){
-        //chama primeira função
-        puts("Chegou na ---------Opção 1");
-      }
-      else if(option == 2){
-        //chama segunda função
-        puts("Chegou na ---------Opção 2");
-      }
-      else if(option == 3){
-        //chama terceira função
-        puts("Chegou na ---------Opção 3");
-      }
-      else if(option == 4){
-        //chama 4 função
-        puts("Chegou na ---------Opção 4");
-      }
-      else if(option == 5){
-        //chama 5 função
-        puts("Chegou na ---------Opção 5");
-      }
-      else if(option == 6){
-        //chama 6 função
-        puts("Chegou na ---------Opção 6");
-      }
-      else if(option == 7){
-        //chama 7 função
-        puts("Chegou na ---------Opção 7");
-      }
-    }
-  }
- return 0;
-}
-
-
-
-
-
 int registro(){
   double valor;
   char descricao[150];
@@ -121,6 +65,43 @@ FILE* f = fopen ("Registros.txt", "a+");
 
   return 0.0;
 
+}
+int menu(){
+  int opcao=-1;
+  while("free"){
+    puts("");
+    puts("Opção 0 - Sair");
+    puts("Opção 1 - Registros");
+    puts("Opção 2 - Saldo");
+    puts("Opção 3 - Relatórios Mensal");
+    puts("Opção 4 - Relatórios Anual");
+    puts("Opção 5 - Arrumar ARquivo");
+    puts("Opção 6 (Plus)- Pensar");
+    puts("Opção 7 (Plus) - Resetar Dados ");
+    scanf("%d",&opcao);
+    switch(opcao){
+      case 1:
+        registro();
+        break;
+      case 2:
+        printf("cheogu na opção 2");
+        break;
+      case 3:
+        printf("cheogu na opção 3");
+        break;
+      case 4:
+        printf("cheogu na opção 4");
+        break;
+      case 5:
+        printf("cheogu na opção 5");;
+        break;
+      case 0:
+        exit(0);
+        break;
+      default:
+        puts("Você digitpu um número invalido Digite novamente");
+    }
+  }
 }
 
 int main(void){
