@@ -5,9 +5,13 @@
 
 void registro(){
   double valor;
-  int dia,mes,ano;
+  int dia,mes,ano,categoria;
   char descricao[25];
-  char categoria[25];
+  char c1[]={"Moradia"};
+  char c2[]={"Estudos"};
+  char c3[]={"Transporte"};
+  char c4[]={"Alimentação"};
+  char c5[]={"Trabalho"};
   
   FILE* f = fopen ("Registros.txt", "a+");
   printf("Digite o valor da receita ou do gasto:\n");
@@ -15,6 +19,7 @@ void registro(){
   //colocar condição para não ter espaço 
   printf("Descricao:\n");
   scanf("%s",descricao);
+  //colocar condição para dia/mes/existente
   printf("Ano:\n");
   scanf("%d", &ano);
   printf("Mês:\n");
@@ -81,9 +86,28 @@ void registro(){
     printf("Digite um Dia válido para o mês de janeiro.\n");
     scanf("%d", &dia);
   }
-  printf("Digite o valor da receita ou do gasto:\n");
-  scanf("%s", categoria);
-  fprintf(f,"%.2lf %d %d %d %s %s\n",valor,dia,mes,ano,descricao,categoria);
+  puts("As categorias existentes são: 1-Moradia, 2-Estudos, 3-Transporte, 4-Alimentacão, 5-Trabalho");
+  printf("Digite um Número Correspondente a Categoria:\n");
+  scanf("%d", &categoria);
+  if(categoria>5 || categoria<0){
+    printf("Digite uma Número válido.\n");
+    scanf("%d", &categoria);
+  }
+  if(categoria==1){
+    fprintf(f,"%.2lf %d %d %d %s %s\n",valor,dia,mes,ano,descricao,c1);
+  }
+  if(categoria==2){
+    fprintf(f,"%.2lf %d %d %d %s %s\n",valor,dia,mes,ano,descricao,c2);
+  }
+  if(categoria==3){
+    fprintf(f,"%.2lf %d %d %d %s %s\n",valor,dia,mes,ano,descricao,c3);
+  }
+  if(categoria==4){
+    fprintf(f,"%.2lf %d %d %d %s %s\n",valor,dia,mes,ano,descricao,c4);
+  }
+  if(categoria==5){
+    fprintf(f,"%.2lf %d %d %d %s %s\n",valor,dia,mes,ano,descricao,c5);
+  }
   fclose(f);
   puts("");
   puts("Registrado Com Sucesso!!");
@@ -131,6 +155,3 @@ int main(void){
   menu();
   return 0;
  }
-
-
-
