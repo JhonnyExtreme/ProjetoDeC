@@ -197,25 +197,24 @@ void anual(){
   fclose(f);
 }
 void saldo(){
-  double aux=0,valor=0;
-  printf("Começo");
+  int dia=0,ano=0,mes=0;
+  double Gasto=0,saldo=0;
+  char descricao[300];
+  char categoria[300];
+
   FILE* fp = fopen ("Registros.txt", "r");
+  FILE* f = fopen ("saldo.txt", "w");
+  int z = fscanf(fp, "%lf" "%d" "%d" "%d" "%s" "%s", &Gasto,&dia,&mes,&ano,descricao,categoria);
 
-  int y = fscanf(fp, "%lf" ,&valor);
-
-  while(y != EOF){
-    aux += valor;
-    y = fscanf(fp, "%lf" ,&valor);
+  while(z != EOF){
+    saldo = saldo + Gasto;
+    z = fscanf(fp, "%lf" "%d" "%d" "%d" "%s" "%s", &Gasto,&dia,&mes,&ano,descricao,categoria); 
   }
+  fprintf(f,"Saldo: %.2lf reais.\n",saldo);
+  puts(" ");
+  printf("Saldo: %.2lf reais.\n",saldo);
   fclose(fp);
-
-  FILE* arq = fopen("saldo.txt","w");
-
-  fprintf(arq,"Saldo: %lf",aux);
-
-  printf("Saldo: %lf",aux);
-  fclose(arq);
-  printf("Fim");
+  fclose(f);
 }
 
 int menu(){
