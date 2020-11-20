@@ -113,6 +113,50 @@ void registro(){
   puts("Registrado Com Sucesso!!");
   puts("");
 }
+
+void mensal(){
+//Qual Mes foi pedido 
+  int mespedido = 0,anopedido=0;
+  int dia=0,ano=0,mes=0;
+  double Gasto=0;
+  char descricao[300];
+  char categoria[300];
+  printf("Digite o Ano\n");
+  scanf("%d",&anopedido);
+  printf("Digite o Mês do qual você queira ver os Gastos/Receitas\n");
+  scanf("%d",&mespedido);
+  FILE* fp = fopen ("Registros.txt", "r");
+  FILE* f = fopen ("RelatórioMensal.html", "w");
+  fprintf(f,"<!DOCTYPE html>\n<html lang='en'>\n<head>\n<meta charset='UTF-8'>\n<title>Relátório Mensal</title>\n<style>table, th, td {\n border: 1px solid black;\nborder-collapse: collapse;\nborder-radius: 5px;\nfont-family: 'Arial Rounded MT Bold';}\ntd{ color: gray;}\n</style>\n</head>\n");
+  fprintf(f,"<body>\n");
+  fprintf(f,"<center><h1>Relátório Mensal</h1></center>\n");
+  fprintf(f,"<center><h3>Gastos Provenientes ao mês %d do Ano %d</h3></center>\n",mespedido,anopedido);
+  fprintf(f,"<center>");
+  fprintf(f,"<table>\n");
+  
+  int z = fscanf (fp, "%lf" "%d" "%d" "%d" "%s" "%s", &Gasto,&dia,&mes,&ano,descricao,categoria);
+  fprintf(f,"<tr><th>Valor</th><th>Descricao</th><th>Categoria</th><th>Data</th></tr>\n");
+  
+  while (z != EOF) {
+    if(mespedido == mes && anopedido == ano){
+      if(Gasto<0){
+        fprintf(f,"<tr><td style='color:   red'>%2.lf</td><td>%s</td><td>%s</td><td>%d/%d/%d</td></tr>\n",Gasto,descricao,categoria,dia,mes,ano);
+      }
+      else{
+        fprintf(f,"<tr><td style='color:  green'>%2.lf</td><td>%s</td><td>%s</td><td>%d/%d/%d</td></tr>\n",Gasto,descricao,categoria,dia,mes,ano);
+      }
+    }
+      
+    z = fscanf (fp, "%lf" "%d" "%d" "%d" "%s" "%s", &Gasto,&  dia,&mes,&ano,descricao,categoria);  
+  }
+  
+
+  fprintf(f,"</table>\n");
+  fprintf(f,"</center>");
+  fprintf(f,"</body>\n</html>");
+  fclose(f);
+}
+
 int menu(){
   int opcao=-1;
   while("free"){
