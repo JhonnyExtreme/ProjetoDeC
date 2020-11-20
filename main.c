@@ -196,6 +196,27 @@ void anual(){
   fprintf(f, "</body>\n</html>");
   fclose(f);
 }
+void saldo(){
+  double aux=0,valor=0;
+  printf("Começo");
+  FILE* fp = fopen ("Registros.txt", "r");
+
+  int y = fscanf(fp, "%lf" ,&valor);
+
+  while(y != EOF){
+    aux += valor;
+    y = fscanf(fp, "%lf" ,&valor);
+  }
+  fclose(fp);
+
+  FILE* arq = fopen("saldo.txt","w");
+
+  fprintf(arq,"Saldo: %lf",aux);
+
+  printf("Saldo: %lf",aux);
+  fclose(arq);
+  printf("Fim");
+}
 
 int menu(){
   int opcao=-1;
@@ -215,7 +236,7 @@ int menu(){
         registro();
         break;
       case 2:
-        printf("cheogu na opção 2");
+        saldo();
         break;
       case 3:
         mensal();
