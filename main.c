@@ -156,6 +156,46 @@ void mensal(){
   fprintf(f,"</body>\n</html>");
   fclose(f);
 }
+void anual(){
+//Qual Ano foi pedido 
+  int anopedido=0;
+  int dia=0,ano=0,mes=0;
+  double Gasto=0;
+  char descricao[300];
+  char categoria[300];
+  printf("Digite o Ano do qual você queira ver os Gastos/Receitas\n");
+  scanf("%d",&anopedido);
+  
+  FILE* fp = fopen ("RegistroNovo.txt", "r");
+  FILE* f = fopen ("RelatórioAnual.html", "w");
+  
+  fprintf(f,"<!DOCTYPE html>\n<html lang='en'>\n<head>\n<meta charset='UTF-8'>\n<title>Relátório Anual</title>\n<style>table, th, td {\n border: 1px solid black;\nborder-collapse: collapse;\nborder-radius: 5px;\nfont-family: 'Arial Rounded MT Bold';}\ntd{ color: gray;}\n</style>\n</head>\n");
+  fprintf(f,"<body>\n");
+  fprintf(f,"<center><h1>Relátório Anual</h1></center>\n");
+  fprintf(f,"<center><h3>Gastos Provenientes do Ano %d</h3></center>\n",anopedido);
+  fprintf(f,"<center>");
+  fprintf(f,"<table>\n");
+
+  int z = fscanf (fp, "%lf" "%d" "%d" "%d" "%s" "%s", &Gasto,&dia,&mes,&ano,descricao,categoria);
+  fprintf(f,"<tr><th>Valor</th><th>Descricao</th><th>Categoria</th><th>Data</th></tr>\n");
+  while ( z != EOF) {
+    if(anopedido == ano){
+      if(Gasto<0){
+       fprintf(f,"<tr><td style='color: red'>%2.lf</td><td>%s</td><td>%s</td><td>%d/%d/%d</td></tr>\n",Gasto,descricao,categoria,dia,mes,ano);
+      }
+      else{
+        fprintf(f,"<tr><td style='color: green'>%2.lf</td><td>%s</td><td>%s</td><td>%d/%d/%d</td></tr>\n",Gasto,descricao,categoria,dia,mes,ano);
+      }
+    }
+    
+    z = fscanf (fp, "%lf" "%d" "%d" "%d" "%s" "%s", &Gasto,&dia,&mes,&ano,descricao,categoria);  
+  }
+
+  fprintf(f,"</table>\n");
+  fprintf(f,"</center>");
+  fprintf(f, "</body>\n</html>");
+  fclose(f);
+}
 
 int menu(){
   int opcao=-1;
@@ -181,7 +221,7 @@ int menu(){
         mensal();
         break;
       case 4:
-        printf("cheogu na opção 4");
+        anual();
         break;
       case 5:
         printf("cheogu na opção 5");;
