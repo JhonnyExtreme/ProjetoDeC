@@ -178,7 +178,7 @@ int menu(){
         printf("cheogu na opção 2");
         break;
       case 3:
-        printf("cheogu na opção 3");
+        mensal();
         break;
       case 4:
         printf("cheogu na opção 4");
