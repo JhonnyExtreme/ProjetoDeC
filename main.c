@@ -115,7 +115,7 @@ void registro(){
 }
 
 void mensal(){
-//Qual Mes foi pedido 
+//Qual Mes foi pedido !
   int mespedido = 0,anopedido=0;
   int dia=0,ano=0,mes=0;
   double Gasto=0;
