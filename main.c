@@ -133,73 +133,76 @@ int boubble(char* a, int number){
 }
 
 void arrumaarq(){
+  /*Limitado para 20 Cadastros*/
+  /*Arrumando por ano*/
   int dia=0,ano=0,mes=0;
   double Gasto=0;
   char descricao[300];
   char categoria[300];
-  int mesvet[100];
-  int anovet[100];
-  /*
-  
-  linhasvet = [1,14,2,12,3,11,4,13,5,10]
 
-  diavet = [14,12,11,13,10]
-  
-  //depois do booble 
-  
-  "boubble(vetor, TAMANHo);"
-  
-  novodiavet = [10,11,12,13,14]
-
-  novodiavet[i]==linhasvet[j](5,10)
-  -acessa o arquivo-
-  -vai na linha q ele tava-
-  -scanf de tudo na linha-
-  -salva na nova linha do novo arquivo-
-
-  linhasvet = [1,14,2,12,3,11,4,13,5,10]
-
-  */
- int i=0,j=1,k=0,n=0,m=0;
+  int i=0,j=1,k=0,n=0,m=0;
   FILE* fp = fopen ("Registros.txt", "r");
   int z = fscanf(fp, "%lf" "%d" "%d" "%d" "%s" "%s", &Gasto,&dia,&mes,&ano,descricao,categoria);  
- /*Contando o Numero de linhas do Arquivo para dar um tamanho pros vetores*/
+
   for(n=0;z != EOF;n++){
     z = fscanf(fp, "%lf" "%d" "%d" "%d" "%s" "%s", &Gasto,&dia,&mes,&ano,descricao,categoria);
   }
-  
-  fclose(fp);
-//Limpando os Vetores
-  char diavet[n];
-  for(i=0;i<n;i++){
-    diavet[i]=0;
-  }
   m=n*2;
-  printf("N=%d M=%d\n",n,m);
-  char linhasvet[m];
+  fclose(fp);
 
+  char anovet[n];
+  for(i=0;i<n;i++){
+    anovet[i]=0;
+  }
+
+  char linhasvet[m];
   for(i=0;i<m;i++){
     linhasvet[i]=0;
   }
-
+  printf("N=> %d M=> %d\n",n,m);
   FILE* arq = fopen ("Registros.txt", "r");
 
   int y = fscanf(arq, "%lf" "%d" "%d" "%d" "%s" "%s", &Gasto,&dia,&mes,&ano,descricao,categoria);
 
   for(i=0;y != EOF;i++){
     linhasvet[i] = j;
-    linhasvet[i+1] = dia;
-    diavet[k] = dia;
+    linhasvet[i+1] = ano;
+    anovet[k] = ano;
     y = fscanf (arq, "%lf" "%d" "%d" "%d" "%s" "%s", &Gasto,&dia,&mes,&ano,descricao,categoria);
     i++;
     j++;
     k++;
   }
-  boubble(diavet,n);
-  
-
   fclose(arq);
 
+  FILE* ffp = fopen ("Registros.txt", "r");
+  int aux=0,d=0;
+  boubble(anovet,n);
+  FILE* f = fopen ("RegistroNovo.txt", "w"); 
+  j=0;
+  for(i=0;i<m;i++){
+    FILE* ffp = fopen ("Registros.txt", "r");
+    if(i%2==1){
+      if(anovet[j]==linhasvet[i]){
+        if(j==n){
+          break;
+        }
+        for(d=0;d<aux;d++){
+          fscanf(ffp, "%lf" "%d" "%d" "%d" "%s" "%s", &Gasto,&dia,&mes,&ano,descricao,categoria)
+          ;
+        }
+        fclose(ffp);
+        fprintf(f,"%.2lf %d %d %d %s %s\n",Gasto,dia,mes,ano,descricao,categoria);
+        linhasvet[i]=0;
+        i=0;
+        j++;
+      }
+    }
+    if(i%2==0){
+       aux=linhasvet[i];
+    }
+  }
+  fclose(f);
 }
 
 void mensal(){
