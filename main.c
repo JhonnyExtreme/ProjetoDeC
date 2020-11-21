@@ -114,6 +114,94 @@ void registro(){
   puts("");
 }
 
+int boubble(char* a, int number){
+    int i, j, temp;
+
+    for(i = 0; i < number - 1; i++)
+    {
+        for(j = 0; j < number - i - 1; j++)
+        {
+            if(a[j] > a[j + 1])
+            {
+                temp = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = temp;
+            }
+        }
+    }
+    return 0;
+}
+
+void arrumaarq(){
+  int dia=0,ano=0,mes=0;
+  double Gasto=0;
+  char descricao[300];
+  char categoria[300];
+  int mesvet[100];
+  int anovet[100];
+  /*
+  
+  linhasvet = [1,14,2,12,3,11,4,13,5,10]
+
+  diavet = [14,12,11,13,10]
+  
+  //depois do booble 
+  
+  "boubble(vetor, TAMANHo);"
+  
+  novodiavet = [10,11,12,13,14]
+
+  novodiavet[i]==linhasvet[j](5,10)
+  -acessa o arquivo-
+  -vai na linha q ele tava-
+  -scanf de tudo na linha-
+  -salva na nova linha do novo arquivo-
+
+  linhasvet = [1,14,2,12,3,11,4,13,5,10]
+
+  */
+ int i=0,j=1,k=0,n=0,m=0;
+  FILE* fp = fopen ("Registros.txt", "r");
+  int z = fscanf(fp, "%lf" "%d" "%d" "%d" "%s" "%s", &Gasto,&dia,&mes,&ano,descricao,categoria);  
+ /*Contando o Numero de linhas do Arquivo para dar um tamanho pros vetores*/
+  for(n=0;z != EOF;n++){
+    z = fscanf(fp, "%lf" "%d" "%d" "%d" "%s" "%s", &Gasto,&dia,&mes,&ano,descricao,categoria);
+  }
+  
+  fclose(fp);
+//Limpando os Vetores
+  char diavet[n];
+  for(i=0;i<n;i++){
+    diavet[i]=0;
+  }
+  m=n*2;
+  printf("N=%d M=%d\n",n,m);
+  char linhasvet[m];
+
+  for(i=0;i<m;i++){
+    linhasvet[i]=0;
+  }
+
+  FILE* arq = fopen ("Registros.txt", "r");
+
+  int y = fscanf(arq, "%lf" "%d" "%d" "%d" "%s" "%s", &Gasto,&dia,&mes,&ano,descricao,categoria);
+
+  for(i=0;y != EOF;i++){
+    linhasvet[i] = j;
+    linhasvet[i+1] = dia;
+    diavet[k] = dia;
+    y = fscanf (arq, "%lf" "%d" "%d" "%d" "%s" "%s", &Gasto,&dia,&mes,&ano,descricao,categoria);
+    i++;
+    j++;
+    k++;
+  }
+  boubble(diavet,n);
+  
+
+  fclose(arq);
+
+}
+
 void mensal(){
 //Qual Mes foi pedido !
   int mespedido = 0,anopedido=0;
@@ -244,7 +332,7 @@ int menu(){
         anual();
         break;
       case 5:
-        printf("cheogu na opção 5");;
+        arrumaarq();
         break;
       case 0:
         exit(0);
