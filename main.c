@@ -307,6 +307,31 @@ void saldo(){
   fclose(fp);
   fclose(f);
 }
+void LimpaDados(){
+  char arquivo[100];
+  puts(" ");
+  puts("-------------------------------");
+  puts("Digite Exatamente como o arquivo está salvo!");
+  puts("Exemplo: 'ExEmPlo.txt' ou 'exemplo.html':");
+  puts("-------------------------------");
+  puts(" ");
+  puts("Digite o arquivo que deseja remover:");
+  scanf("%s",arquivo);
+  FILE * arq = fopen ( arquivo, "r" );
+    if ( arq ) {
+        fclose(arq);
+        puts(" ");
+        printf("Removido Com Sucesso"); 
+        puts(" ");
+        remove(arquivo);
+    }
+    else{ 
+      puts(" ");
+        printf("Nao existe nenhum arquivo com o nome de '%s'",arquivo);
+      puts(" ");
+    }
+    getchar();
+}
 
 int menu(){
   int opcao=-1;
@@ -317,9 +342,8 @@ int menu(){
     puts("Opção 2 - Saldo");
     puts("Opção 3 - Relatórios Mensal");
     puts("Opção 4 - Relatórios Anual");
-    puts("Opção 5 - Arrumar ARquivo");
-    puts("Opção 6 (Plus)- Pensar");
-    puts("Opção 7 (Plus) - Resetar Dados ");
+    puts("Opção 5 - Arrumar Arquivo");
+    puts("Opção 6 - Limpar Dados");
     scanf("%d",&opcao);
     switch(opcao){
       case 1:
@@ -336,6 +360,9 @@ int menu(){
         break;
       case 5:
         arrumaarq();
+        break;
+      case 6:
+        LimpaDados();
         break;
       case 0:
         exit(0);
