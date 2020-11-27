@@ -298,6 +298,136 @@ void anual(){
   fprintf(f, "</body>\n</html>");
   fclose(f);
 }
+
+void RelatorioCat(){
+//Qual Mes foi pedido 
+  int catscanf=0;
+  int dia=0,ano=0,mes=0;
+  double Gasto=0;
+  char descricao[300];
+  char categoria[300];
+  char c1[]={"Moradia"};
+  char c2[]={"Estudos"};
+  char c3[]={"Transporte"};
+  char c4[]={"Alimentação"};
+  char c5[]={"Trabalho"};
+
+  puts("Escolha uma dessas categorias Já existentes:");
+  printf(" 1-%s\n 2-%s\n 3-%s\n 4-%s\n 5-%s\nDigite Sua Opção:",c1,c2,c3,c4,c5);
+  scanf("%d", &catscanf);
+  while(catscanf>5 || catscanf<0){
+    puts("");
+    printf("Digite uma Número válido.\n");
+    puts("");
+    puts("Escolha uma dessas categorias Já existentes:");
+    printf(" 1-%s\n 2-%s\n 3-%s\n 4-%s\n 5-%s\nDigite Sua Opção:",c1,c2,c3,c4,c5);
+    scanf("%d", &catscanf);
+  }
+  FILE* fp = fopen ("Registros.txt", "r");
+  FILE* f = fopen ("RelatorioCategorico.html", "w");
+  fprintf(f,"<!DOCTYPE html>\n<html lang='en'>\n<head>\n<meta charset='UTF-8'>\n<title>Relátório Mensal</title>\n<style>table, th, td {\n border: 1px solid black;\nborder-collapse: collapse;\nborder-radius: 5px;\nfont-family: 'Arial Rounded MT Bold';}\ntd{ color: gray;}\n</style>\n</head>\n");
+  fprintf(f,"<body>\n");
+  fprintf(f,"<center><h1>Relátório Categórico</h1></center>\n");
+  if(catscanf==1){
+   fprintf(f,"<center><h3>Gastos Provenientes Da Categoria de %s</h3></center>\n",c1);
+  }
+  else if(catscanf==2){
+    fprintf(f,"<center><h3>Gastos Provenientes Da Categoria de %s</h3></center>\n",c2);
+  }
+  else if(catscanf==3){
+    fprintf(f,"<center><h3>Gastos Provenientes Da Categoria de %s</h3></center>\n",c3);
+  }
+  else if(catscanf==4){
+    fprintf(f,"<center><h3>Gastos Provenientes Da Categoria de %s</h3></center>\n",c4);
+  }
+  else if(catscanf==5){
+    fprintf(f,"<center><h3>Gastos Provenientes Da Categoria de %s</h3></center>\n",c5);
+  }
+  fprintf(f,"<center>");
+  fprintf(f,"<table>\n");
+  
+  int z = fscanf (fp, "%lf" "%d" "%d" "%d" "%s" "%s", &Gasto,&dia,&mes,&ano,descricao,categoria);
+  fprintf(f,"<tr><th>Valor</th><th>Descricao</th><th>Categoria</th><th>Data</th></tr>\n");
+  if(catscanf==1){
+    while (z != EOF) {
+      int testa = strcmp(c1, categoria);
+      if(testa==0){
+        if(Gasto<0){
+            fprintf(f,"<tr><td style='color:   red'>%2.lf</td><td>%s</td><td>%s</td><td>%d/%d/%d</td></tr>\n",Gasto,descricao,categoria,dia,mes,ano);
+          }
+        else{
+          fprintf(f,"<tr><td style='color:  green'>%2.lf</td><td>%s</td><td>%s</td><td>%d/%d/%d</td></tr>\n",Gasto,descricao,categoria,dia,mes,ano);
+        } 
+      }
+    z = fscanf (fp, "%lf" "%d" "%d" "%d" "%s" "%s", &Gasto,&  dia,&mes,&ano,descricao,categoria);  
+    }
+  }
+  if(catscanf==2){
+    while (z != EOF) {
+      int testa = strcmp(c2, categoria);
+      if(testa==0){
+        if(Gasto<0){
+            fprintf(f,"<tr><td style='color:   red'>%2.lf</td><td>%s</td><td>%s</td><td>%d/%d/%d</td></tr>\n",Gasto,descricao,categoria,dia,mes,ano);
+          }
+        else{
+          fprintf(f,"<tr><td style='color:  green'>%2.lf</td><td>%s</td><td>%s</td><td>%d/%d/%d</td></tr>\n",Gasto,descricao,categoria,dia,mes,ano);
+        } 
+      }
+    z = fscanf (fp, "%lf" "%d" "%d" "%d" "%s" "%s", &Gasto,&  dia,&mes,&ano,descricao,categoria);  
+    }
+  }
+  if(catscanf==3){
+    while (z != EOF) {
+      int testa = strcmp(c3, categoria);
+      if(testa==0){
+        if(Gasto<0){
+            fprintf(f,"<tr><td style='color:   red'>%2.lf</td><td>%s</td><td>%s</td><td>%d/%d/%d</td></tr>\n",Gasto,descricao,categoria,dia,mes,ano);
+          }
+        else{
+          fprintf(f,"<tr><td style='color:  green'>%2.lf</td><td>%s</td><td>%s</td><td>%d/%d/%d</td></tr>\n",Gasto,descricao,categoria,dia,mes,ano);
+        } 
+      }
+    z = fscanf (fp, "%lf" "%d" "%d" "%d" "%s" "%s", &Gasto,&  dia,&mes,&ano,descricao,categoria);  
+    }
+  }
+  if(catscanf==4){
+    while (z != EOF) {
+      int testa = strcmp(c4, categoria);
+      if(testa==0){
+        if(Gasto<0){
+            fprintf(f,"<tr><td style='color:   red'>%2.lf</td><td>%s</td><td>%s</td><td>%d/%d/%d</td></tr>\n",Gasto,descricao,categoria,dia,mes,ano);
+          }
+        else{
+          fprintf(f,"<tr><td style='color:  green'>%2.lf</td><td>%s</td><td>%s</td><td>%d/%d/%d</td></tr>\n",Gasto,descricao,categoria,dia,mes,ano);
+        } 
+      }
+    z = fscanf (fp, "%lf" "%d" "%d" "%d" "%s" "%s", &Gasto,&  dia,&mes,&ano,descricao,categoria);  
+    }
+  }
+  if(catscanf==5){
+    while (z != EOF) {
+      int testa = strcmp(c5, categoria);
+      if(testa==0){
+        if(Gasto<0){
+            fprintf(f,"<tr><td style='color:   red'>%2.lf</td><td>%s</td><td>%s</td><td>%d/%d/%d</td></tr>\n",Gasto,descricao,categoria,dia,mes,ano);
+          }
+        else{
+          fprintf(f,"<tr><td style='color:  green'>%2.lf</td><td>%s</td><td>%s</td><td>%d/%d/%d</td></tr>\n",Gasto,descricao,categoria,dia,mes,ano);
+        } 
+      }
+    z = fscanf (fp, "%lf" "%d" "%d" "%d" "%s" "%s", &Gasto,&  dia,&mes,&ano,descricao,categoria);  
+    }
+  
+  }
+
+  fprintf(f,"</table>\n");
+  fprintf(f,"</center>");
+  fprintf(f,"</body>\n</html>");
+  fclose(f);
+  puts("");
+  puts("Relatório Categórico Gerado Com sucesso!!");
+}
+
 void saldo(){
   int dia=0,ano=0,mes=0;
   double Gasto=0,saldo=0;
