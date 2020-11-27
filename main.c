@@ -125,6 +125,7 @@ void registro(){
   puts("Registrado Com Sucesso!!");
   puts("");
 }
+/*
 int boubble(char* a, int number){
     int i, j, temp;
 
@@ -144,8 +145,8 @@ int boubble(char* a, int number){
 }
 
 void arrumaarq(){
-  /*Limitado para 20 Cadastros*/
-  /*Arrumando por ano*/
+  //Limitado para 20 Cadastros
+  //Arrumando por ano
   int dia=0,ano=0,mes=0;
   double Gasto=0;
   char descricao[300];
@@ -215,9 +216,10 @@ void arrumaarq(){
   }
   fclose(f);
 }
+*/
 
 void mensal(){
-//Qual Mes foi pedido !
+//Qual Mes foi pedido 
   int mespedido = 0,anopedido=0;
   int dia=0,ano=0,mes=0;
   double Gasto=0;
@@ -227,8 +229,12 @@ void mensal(){
   scanf("%d",&anopedido);
   printf("Digite o Mês do qual você queira ver os Gastos/Receitas\n");
   scanf("%d",&mespedido);
+  while(mespedido>12 || mespedido<=0){
+    printf("Digite um mês válido\n");
+    scanf("%d",&mespedido);
+  }
   FILE* fp = fopen ("Registros.txt", "r");
-  FILE* f = fopen ("RelatórioMensal.html", "w");
+  FILE* f = fopen ("RelatorioMensal.html", "w");
   fprintf(f,"<!DOCTYPE html>\n<html lang='en'>\n<head>\n<meta charset='UTF-8'>\n<title>Relátório Mensal</title>\n<style>table, th, td {\n border: 1px solid black;\nborder-collapse: collapse;\nborder-radius: 5px;\nfont-family: 'Arial Rounded MT Bold';}\ntd{ color: gray;}\n</style>\n</head>\n");
   fprintf(f,"<body>\n");
   fprintf(f,"<center><h1>Relátório Mensal</h1></center>\n");
@@ -257,6 +263,8 @@ void mensal(){
   fprintf(f,"</center>");
   fprintf(f,"</body>\n</html>");
   fclose(f);
+  puts("");
+  puts("Relátorio Mensal Gerado Com sucesso!!");
 }
 void anual(){
 //Qual Ano foi pedido 
@@ -268,8 +276,8 @@ void anual(){
   printf("Digite o Ano do qual você queira ver os Gastos/Receitas\n");
   scanf("%d",&anopedido);
   
-  FILE* fp = fopen ("RegistroNovo.txt", "r");
-  FILE* f = fopen ("RelatórioAnual.html", "w");
+  FILE* fp = fopen ("Registros.txt", "r");
+  FILE* f = fopen ("RelatorioAnual.html", "w");
   
   fprintf(f,"<!DOCTYPE html>\n<html lang='en'>\n<head>\n<meta charset='UTF-8'>\n<title>Relátório Anual</title>\n<style>table, th, td {\n border: 1px solid black;\nborder-collapse: collapse;\nborder-radius: 5px;\nfont-family: 'Arial Rounded MT Bold';}\ntd{ color: gray;}\n</style>\n</head>\n");
   fprintf(f,"<body>\n");
@@ -297,6 +305,8 @@ void anual(){
   fprintf(f,"</center>");
   fprintf(f, "</body>\n</html>");
   fclose(f);
+  puts("");
+  puts("Relátorio Anual Gerado Com sucesso!!");
 }
 
 void RelatorioCat(){
@@ -500,7 +510,7 @@ int menu(){
         anual();
         break;
       case 5:
-        arrumaarq();
+        RelatorioCat();
         break;
       case 6:
         LimpaDados();
