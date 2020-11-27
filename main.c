@@ -6,7 +6,7 @@
 void registro(){
   double valor;
   int dia,mes,ano,categoria;
-  char descricao[25];
+  char descricao[30];
   char c1[]={"Moradia"};
   char c2[]={"Estudos"};
   char c3[]={"Transporte"};
@@ -14,83 +14,94 @@ void registro(){
   char c5[]={"Trabalho"};
   
   FILE* f = fopen ("Registros.txt", "a+");
+  
   printf("Digite o valor da receita ou do gasto:\n");
   scanf("%lf", &valor);
-  //colocar condição para não ter espaço 
-  printf("Descricao:\n");
-  scanf("%s",descricao);
-  //colocar condição para dia/mes/existente
+  printf("Descricao(Até 25 caracteres):\n");
+  scanf("%*[^\n]"); scanf("%*c");
+  scanf("%25[^\n]", descricao);
+
+  int len = strlen(descricao); 
+  for (int i = 0, posicao = 0; i < len; i++, posicao++) {
+      if (descricao[posicao] == ' ') posicao++;
+      descricao[i] = descricao[posicao];
+  }
   printf("Ano:\n");
   scanf("%d", &ano);
   printf("Mês:\n");
   scanf("%d", &mes);
-  if(mes>12 || mes<=0){
+  while(mes>12 || mes<=0){
     printf("Digite um mês válido\n");
     scanf("%d",&mes);
   }
   printf("Dia:\n");
   scanf("%d", &dia);
-  if(dia>= 32 || dia<=0){
-    printf("Digite um Dia válido\n");
-    scanf("%d", &dia);
-  } 
-  else if (mes == 1 && dia>31){
-    printf("Digite um Dia válido para o mês de janeiro.\n");
-    scanf("%d", &dia);
-  }
-  else if (mes == 2 && dia>28){
-    printf("Digite um Dia válido para o mês de Fevereiro.\n");
-    scanf("%d", &dia);
-  }
-  else if (mes == 3 && dia>31){
-    printf("Digite um Dia válido para o mês de março.\n");
-    scanf("%d", &dia);
-  }
-  else if (mes == 4 && dia>30){
-    printf("Digite um Dia válido para o mês de abril.\n");
-    scanf("%d", &dia);
-  }
-  else if (mes == 5 && dia>30){
-    printf("Digite um Dia válido para o mês de maio.\n");
-    scanf("%d", &dia);
-  }
-  else if (mes == 6 && dia>30){
-    printf("Digite um Dia válido para o mês de junho.\n");
-    scanf("%d", &dia);
-  }
-  else if (mes == 7 && dia>31){
-    printf("Digite um Dia válido para o mês de julho.\n");
-    scanf("%d", &dia);
-  }
-  else if (mes == 8 && dia>31){
-    printf("Digite um Dia válido para o mês de Agosto.\n");
-    scanf("%d", &dia);
-  }
-  else if (mes == 9 && dia>30){
-    printf("Digite um Dia válido para o mês de setembro.\n");
-    scanf("%d", &dia);
-  }
-  else if (mes == 10 && dia>31){
-    printf("Digite um Dia válido para o mês de outubro.\n");
-    scanf("%d", &dia);
-  }
-  else if (mes == 11 && dia>30){
-    printf("Digite um Dia válido para o mês de novembro.\n");
-    scanf("%d", &dia);
-  }
-  else if (mes == 12 && dia>31){
-    printf("Digite um Dia válido para o mês de dezembro.\n");
-    scanf("%d", &dia);
-  }
-  else if (mes == 1 && dia>31){
-    printf("Digite um Dia válido para o mês de janeiro.\n");
-    scanf("%d", &dia);
-  }
-  puts("As categorias existentes são: 1-Moradia, 2-Estudos, 3-Transporte, 4-Alimentacão, 5-Trabalho");
-  printf("Digite um Número Correspondente a Categoria:\n");
+  
+  while(dia>= 32 || dia<=0){
+      if (mes == 1 && dia>31){
+        printf("Digite um Dia válido para o mês de janeiro.\n");
+        scanf("%d", &dia);
+      }
+      else if (mes == 2 && dia>28){
+        printf("Digite um Dia válido para o mês de Fevereiro.\n");
+        scanf("%d", &dia);
+      }
+      else if (mes == 3 && dia>31){
+        printf("Digite um Dia válido para o mês de março.\n");
+        scanf("%d", &dia);
+      }
+      else if (mes == 4 && dia>30){
+        printf("Digite um Dia válido para o mês de abril.\n");
+        scanf("%d", &dia);
+      }
+      else if (mes == 5 && dia>30){
+        printf("Digite um Dia válido para o mês de maio.\n");
+        scanf("%d", &dia);
+      }
+      else if (mes == 6 && dia>30){
+        printf("Digite um Dia válido para o mês de junho.\n");
+        scanf("%d", &dia);
+      }
+      else if (mes == 7 && dia>31){
+        printf("Digite um Dia válido para o mês de julho.\n");
+        scanf("%d", &dia);
+      }
+      else if (mes == 8 && dia>31){
+        printf("Digite um Dia válido para o mês de Agosto.\n");
+        scanf("%d", &dia);
+      }
+      else if (mes == 9 && dia>30){
+        printf("Digite um Dia válido para o mês de setembro.\n");
+        scanf("%d", &dia);
+      }
+      else if (mes == 10 && dia>31){
+        printf("Digite um Dia válido para o mês de outubro.\n");
+        scanf("%d", &dia);
+      }
+      else if (mes == 11 && dia>30){
+        printf("Digite um Dia válido para o mês de novembro.\n");
+        scanf("%d", &dia);
+      }
+      else if (mes == 12 && dia>31){
+        printf("Digite um Dia válido para o mês de dezembro.\n");
+        scanf("%d", &dia);
+      }
+      else if (mes == 1 && dia>31){
+        printf("Digite um Dia válido para o mês de janeiro.\n");
+        scanf("%d", &dia);
+      }
+    } 
+  
+  puts("Escolha uma dessas categorias Já existentes:");
+  printf(" 1-%s\n 2-%s\n 3-%s\n 4-%s\n 5-%s\nDigite Sua Opção:",c1,c2,c3,c4,c5);
   scanf("%d", &categoria);
-  if(categoria>5 || categoria<0){
+  
+ while(categoria>5 || categoria<0){
+    puts("");
     printf("Digite uma Número válido.\n");
+    puts("");
+    puts("Escolha uma dessas categorias Já existentes:");
+    printf(" 1-%s\n 2-%s\n 3-%s\n 4-%s\n 5-%s\nDigite Sua Opção:",c1,c2,c3,c4,c5);
     scanf("%d", &categoria);
   }
   if(categoria==1){
@@ -108,12 +119,12 @@ void registro(){
   if(categoria==5){
     fprintf(f,"%.2lf %d %d %d %s %s\n",valor,dia,mes,ano,descricao,c5);
   }
+
   fclose(f);
   puts("");
   puts("Registrado Com Sucesso!!");
   puts("");
 }
-
 int boubble(char* a, int number){
     int i, j, temp;
 
