@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
 
 void registro(){
   double valor;
@@ -143,10 +142,9 @@ int boubble(char* a, int number){
     }
     return 0;
 }
-
-void arrumaarq(){
-  //Limitado para 20 Cadastros
-  //Arrumando por ano
+*/
+/*
+void ArrumaAno(){
   int dia=0,ano=0,mes=0;
   double Gasto=0;
   char descricao[300];
@@ -217,7 +215,7 @@ void arrumaarq(){
   fclose(f);
 }
 */
-
+ 
 void mensal(){
 //Qual Mes foi pedido 
   int mespedido = 0,anopedido=0;
@@ -266,6 +264,7 @@ void mensal(){
   puts("");
   puts("Relátorio Mensal Gerado Com sucesso!!");
 }
+
 void anual(){
 //Qual Ano foi pedido 
   int anopedido=0;
@@ -308,7 +307,6 @@ void anual(){
   puts("");
   puts("Relátorio Anual Gerado Com sucesso!!");
 }
-
 void RelatorioCat(){
 //Qual Mes foi pedido 
   int catscanf=0;
@@ -435,7 +433,7 @@ void RelatorioCat(){
   fprintf(f,"</body>\n</html>");
   fclose(f);
   puts("");
-  puts("Relatório Categórico Gerado Com sucesso!!");
+  puts("Relátorio Categórico Gerado Com sucesso!!");
 }
 
 void saldo(){
@@ -458,6 +456,7 @@ void saldo(){
   fclose(fp);
   fclose(f);
 }
+
 void LimpaDados(){
   char arquivo[100];
   puts(" ");
@@ -493,7 +492,7 @@ int menu(){
     puts("Opção 2 - Saldo");
     puts("Opção 3 - Relatórios Mensal");
     puts("Opção 4 - Relatórios Anual");
-    puts("Opção 5 - Arrumar Arquivo");
+    puts("Opção 5 - Relatório Por Categoria");
     puts("Opção 6 - Limpar Dados");
     scanf("%d",&opcao);
     switch(opcao){
@@ -516,15 +515,18 @@ int menu(){
         LimpaDados();
         break;
       case 0:
+        puts("Obrigado Por Utilizar o gerenciador Financeiro");
         exit(0);
         break;
       default:
-        puts("Você digitpu um número invalido Digite novamente");
+        puts("Você digitou um número inválido Digite novamente");
     }
   }
 }
-
+ 
 int main(void){
   menu();
   return 0;
  }
+
+
